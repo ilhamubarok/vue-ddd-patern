@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar color="blue" elevation="4">
-      <v-row align="center" justify="space-between" class="px-4">
+      <v-row align="center" justify="space-between" class="px-5">
         <v-toolbar-title>Collapsing Bar</v-toolbar-title>
 
         <v-btn color="primary" elevation="2" @click="handleLogout"> Logout </v-btn>

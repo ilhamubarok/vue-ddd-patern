@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar color="blue" elevation="4">
-      <v-row align="center" class="px-4">
+      <v-row align="center" justify="space-between" class="px-4">
         <v-toolbar-title>Collapsing Bar</v-toolbar-title>
 
         <v-btn color="primary" elevation="2" @click="handleLogout"> Logout </v-btn>
@@ -9,7 +9,7 @@
     </v-app-bar>
     <v-row>
       <v-col cols="3" v-for="i in 10" :key="i">
-        <v-card class="py-5 px-2">{{ i }}</v-card>
+        <v-card class="py-5">{{ i }}</v-card>
       </v-col>
     </v-row>
   </div>

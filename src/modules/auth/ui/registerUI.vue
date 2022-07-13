@@ -8,12 +8,11 @@
           <text-input label="E-mail" name="email" :rules="emailRules" type="email"></text-input>
           <text-input label="Password" name="password" :rules="passwordRules" type="password"></text-input>
 
-          <v-btn color="primary" type="submit"> Registrasi </v-btn>
+          <v-btn color="primary" type="submit" :loading="auth_loading"> Registrasi </v-btn>
           <div>
             <span>sudah punya akun? </span>
             <a href="/login">login</a>
           </div>
-          <p v-if="auth_loading">loading...</p>
         </v-form>
       </v-col>
     </v-row>

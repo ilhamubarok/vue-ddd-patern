@@ -1,9 +1,12 @@
 import * as http from 'axios';
+import 'dotenv/config';
 
 const config = {
-  baseURL: process.env.VUE_APP_BASE_URL ?? '//api.local/',
+  baseURL: 'https://authentication-api-express.herokuapp.com',
+  headers: {
+    'Content-Type': 'application/json',
+  },
 };
-
 const axios = http.create(config);
 
 export default axios;

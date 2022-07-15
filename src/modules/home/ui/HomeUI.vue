@@ -1,15 +1,18 @@
 <template>
   <div>
-    <v-app-bar color="blue" elevation="4">
-      <v-row align="center" justify="space-between" class="px-5">
-        <v-toolbar-title>Collapsing Bar</v-toolbar-title>
+    <v-row justify="center" class="my-8">
+      <v-col cols="3">
+        <v-form @submit.prevent="addTask">
+          <v-text-field label="Masukkan tugas baru" name="newTask"></v-text-field>
+          <v-textarea no-resize label="Masukkan deskripsi tugas" name="newDesc"></v-textarea>
+          <v-btn type="submit" color="primary">simpan</v-btn>
+        </v-form>
+      </v-col>
+    </v-row>
 
-        <v-btn color="primary" elevation="2" @click="handleLogout"> Logout </v-btn>
-      </v-row>
-    </v-app-bar>
-    <v-row>
-      <v-col cols="3" v-for="i in 10" :key="i">
-        <v-card class="py-5">{{ i }}</v-card>
+    <v-row class="mt-8">
+      <v-col cols="3" v-for="(task, index) in tasks" :key="index" class="ma-2">
+        <card-of-task :title="task.title" :description="task.description" @on-click="removeTask(index)" />
       </v-col>
     </v-row>
   </div>
@@ -21,35 +24,29 @@ import { mapGetters } from 'vuex';
 
 export default {
   name: 'HomeUI',
+  components: {
+    CardOfTask: () => import('./components/CardOfTask.vue'),
+  },
   computed: {
     ...mapGetters({
       home_title: 'home/home_title',
     }),
   },
-  methods: {
-    /**
-     * @description Fetch Get Title
-     *
-     * @return {void}
-     */
-    fetchTitle() {
-      try {
-        this.$store.dispatch('home/home_getTitle');
-      } catch (err) {
-        this.$store.dispatch('errorHandler/errorHandler_postMessage', err);
-      }
-    },
-    handleLogout() {
-      try {
-        this.$store.dispatch('auth/auth_HANDLE_LOGOUT');
-        this.$router.replace('/login');
-      } catch (error) {
-        this.$store.dispatch('errorHandler/errorHandler_postMessage', error);
-      }
-    },
+  data() {
+    return {
+      tasks: [],
+    };
   },
-  created() {
-    this.fetchTitle();
+  methods: {
+    addTask(event) {
+      const { newTask, newDesc } = event.target;
+      this.tasks.push({ title: newTask.value, description: newDesc.value });
+      newTask.value = '';
+      newDesc.value = '';
+    },
+    removeTask(taskId) {
+      this.tasks = this.tasks.filter((value, index) => index !== taskId);
+    },
   },
 };
 </script>

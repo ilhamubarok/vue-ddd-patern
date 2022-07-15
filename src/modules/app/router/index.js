@@ -22,4 +22,14 @@ const router = new VueRouter({
   routes: routesModules,
 });
 
+// router.beforeEach((to, from, next) => {
+//   if (to.meta.guard && localStorage.getItem('token') !== undefined) {
+//     return next({
+//       path: '/login',
+//       replace: true,
+//     });
+//   }
+//   return next();
+// });
+
 export default router;

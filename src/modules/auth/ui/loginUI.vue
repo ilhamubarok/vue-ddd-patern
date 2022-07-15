@@ -18,7 +18,7 @@
   </component>
 </template>
 <script>
-import authMixin from '../mixins/auth.mixins';
+import authMixin from '../mixins';
 
 export default {
   name: 'loginUI',
